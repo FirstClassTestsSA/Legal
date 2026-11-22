@@ -2,13 +2,16 @@
 <!--
   Data deletion request page - First Class Tests SA
   Clone notes (to produce re5-delete-data.html / re1-delete-data.html).
-  Swap ONLY the four items marked with an inline SWAP comment in the body:
+  Swap ONLY the items marked with an inline SWAP comment in the body:
     1. Page title            app display name
     2. App name              header meta block and section 1
     3. Package id            za.co.fctsa.firearms  to  .re5 or .re1
     4. Privacy-policy link   fctsa-privacy-policy.html  to  re5- or re1-
+  Also check the quoted app copy against the clone's config.json: the "Restore previous
+  purchase" label and the share rewards in section 3.
   Everything else (developer name, contact email, the RevenueCat / Google /
   Expo framing, and the request steps) is identical across all three apps.
+  Data paths as of 22 Nov 2026 are listed in the privacy policy's header comment.
   Styling is self-contained below and renders standalone without any external
   stylesheet. To match the privacy policy exactly, paste that file's style block
   in place of the one below; the markup here is plain semantic HTML.
@@ -68,15 +71,17 @@
   <p class="meta">
     <strong>Firearm Competency Test SA</strong><!-- SWAP --><br>
     Published by First Class Tests SA<br>
-    Last updated: 11 July 2026
+    Last updated: 22 November 2026
   </p>
 
   <div class="short">
-    <strong>In short:</strong> This app has no user accounts and no sign-in. The only
-    information we hold about a user is the purchase (entitlement) record for a one-time
-    unlock, kept on our behalf by RevenueCat. You can ask us to delete that record by
-    email and we will do so within 30 days. Google keeps its own record of the transaction
-    under its own policies, which is outside our control.
+    <strong>In short:</strong> This app has no user accounts and no sign-in. If you bought the
+    unlock, you can ask us by email to delete your purchase record, which RevenueCat keeps for
+    us; we will do so within 30 days. After that, your paid content may lock on your phone until
+    you tap "Restore previous purchase". Google keeps its own record of the transaction, which we
+    can see in Play Console (Google's website for app publishers) but cannot delete. Expo, which
+    delivers our content updates, keeps update-check records for us that we cannot match to you
+    ourselves; on request we will ask Expo about them (see section 4).
   </div>
 
   <h2>1. Scope</h2>
@@ -85,11 +90,13 @@
     Firearm Competency Test SA<!-- SWAP --> (Google Play package
     <code>za.co.fctsa.firearms</code><!-- SWAP -->), published by First Class Tests SA
     ("we", "us"). For the purposes of the Protection of Personal Information Act, 2013
-    (POPIA), we are the responsible party for this limited processing.
+    (POPIA), we are the responsible party (the one who decides why and how your information is
+    used) for this limited processing.
   </p>
   <p>
     The app has <strong>no user accounts and no login</strong>. There is no account to
-    delete. A deletion request therefore concerns the <strong>purchase record only</strong>.
+    delete. A deletion request therefore concerns your <strong>purchase record</strong> and,
+    if you ask, Expo's update-check records (section 4).
   </p>
 
   <h2>2. How to request deletion</h2>
@@ -107,22 +114,48 @@
     within <strong>30 days</strong>. We do not charge for this.
   </p>
 
-  <h2>3. What we delete</h2>
+  <h2>3. What we delete, and what happens afterwards</h2>
   <p>
     On request, we permanently delete the <strong>purchase / entitlement record held by
-    RevenueCat</strong> that is associated with your purchase. This is the only personal
-    information we process, and it consists of an anonymous, app-generated identifier
-    (not linked to your real-world identity), your purchase and entitlement records, your
-    device's country (from the store), and technical metadata such as app version, SDK
-    version, operating-system version, and device model.
+    RevenueCat</strong> for your purchase. It holds an anonymous identifier that the app
+    created (it contains no name or email address), your purchase and entitlement records
+    (including your Google Play order number), your device's country (from the store), and
+    technical details such as the app version, the RevenueCat software version, the
+    operating-system version and the device model.
   </p>
   <p>
-    Your study progress, quiz results, and unlock status are stored <strong>only on your
-    device</strong> — we never receive them. Uninstalling the app removes that on-device
-    data immediately; no request to us is needed.
+    <strong>Afterwards:</strong> deleting the record does not cancel your Google Play purchase.
+    The app checks your unlock with RevenueCat each time it starts online, so the next time it
+    does, RevenueCat may create a new, empty record for the same identifier and your paid
+    content may lock on that phone. To unlock it again, tap "Restore previous purchase" in the
+    app; this creates a new record holding your purchase. While the app stays installed and is
+    used online, a record exists for it again (without your purchase unless you restore it);
+    uninstall the app first if you do not want that.
+  </p>
+  <p>
+    Every installation, including ones that never bought anything, has an anonymous RevenueCat
+    record, created the first time the app goes online. It holds no name or contact details.
+    The app does not show its identifier and there is no order to look it up by, so we cannot
+    find it.
+  </p>
+  <p>
+    <strong>What Google shows us.</strong> In Play Console, Google shows us a record of each
+    purchase: the order number, date, product and price, your country and, for some sales,
+    your state, city and postcode, and the device model. It also lets us find an order by the
+    buyer's email address. We use this only for refunds, support, deletion requests and tax
+    records, and we cannot delete Google's copy (see section 4). When you email us, we also
+    hold your email address and whatever your message contains, only for as long as we need to
+    deal with your request.
+  </p>
+  <p>
+    Your study progress, quiz results and bookmarks are kept <strong>on your device</strong>
+    and are never sent to us. Uninstalling the app, or clearing its storage, removes them from
+    your phone; no request to us is needed. If Android backup is switched on for your Google
+    account, a copy is also kept in your Google account's device backup. Google lets you delete
+    only the whole device backup (all apps and settings), not this app's part of it.
   </p>
 
-  <h2>4. What is kept, and what is outside our control</h2>
+  <h2>4. What is kept by Google and Expo</h2>
   <p>
     <strong>Google Play (Google)</strong> keeps its own record of the transaction —
     including your payment and order history — and retains it for legal, financial, and
@@ -132,12 +165,36 @@
     <a href="https://myaccount.google.com/data-and-privacy">myaccount.google.com/data-and-privacy</a>.
   </p>
   <p>
-    When the app checks for content updates it sends transient technical data — your
-    device's IP address, along with the platform, the app's runtime version, the update
-    channel, the current update identifier, and a user-agent string — to <strong>Expo</strong>
-    solely to deliver the correct update. This is not stored by us as a user profile and is
-    not a record we can delete on your behalf; it is retained, if at all, under Expo's own
-    policy.
+    <strong>Expo</strong> delivers our content updates. Each time the app is opened fresh, it
+    asks Expo whether new question content is available. The check carries a random
+    installation identifier that the app creates the first time it runs, together with technical
+    labels such as the platform, the app's runtime version and update channel, the identifiers
+    of the content built into the app and of the content currently running, and a user-agent
+    string. Like any internet request, it also reveals your IP address to Expo. If a version of
+    the app's content has failed to start on your phone, later checks also list the failed
+    versions' identifiers; if the update system itself fails at start-up, the next check carries
+    a short technical error message, once.
+  </p>
+  <p>
+    Expo stores the installation identifier, your IP address and any failed-update identifiers
+    with its records, on our behalf, to roll out updates, count installations and failed
+    updates, and measure use of its service. Expo states that it deletes the start-up error
+    text after three days; it has not published how long it keeps the rest. Because the app does
+    not show you the installation identifier, we cannot look these records up ourselves:
+    contact us and we will ask Expo, which keeps them for us, whether it can find and delete
+    them.
+  </p>
+  <p>
+    Clearing the app's storage makes the app create new identifiers for Expo and RevenueCat the
+    next time it starts. This does not delete the records Expo or RevenueCat already hold; it only
+    means future checks use new identifiers, and records deleted on request start again the next
+    time the app goes online. Clearing storage also erases your study progress, bookmarks and any
+    free questions or mock-exam credit earned by sharing; a purchased unlock comes back
+    automatically the next time the app is online. Uninstalling and reinstalling may not give new
+    identifiers: if Android backup is switched on, Android restores the app's saved data,
+    including the old identifiers, when the app is reinstalled. Expo describes this data at
+    <a href="https://docs.expo.dev/eas-update/store-privacy-declarations/">docs.expo.dev/eas-update/store-privacy-declarations</a>;
+    its general privacy policy is at <a href="https://expo.dev/privacy">expo.dev/privacy</a>.
   </p>
 
   <hr>
