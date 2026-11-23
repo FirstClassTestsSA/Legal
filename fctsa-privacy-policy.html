@@ -11,11 +11,13 @@
     5. DATES: effective date, the "What changed" note, and the archived previous version's link.
   Everything else (data paths, processors, POPIA framing) is engine-generic and stays as-is
   UNLESS a new app adds an SDK that transmits data — re-run the SDK audit before reusing.
-  Data paths as of 22 Nov 2026 (expo-updates 58, expo-eas-client 58, react-native-purchases 10.16):
+  Data paths as of 23 Nov 2026 (expo-updates 58, expo-eas-client 58, react-native-purchases 10.16):
     - RevenueCat + Google Play Billing: unlock and price check at every start and again on return
-      to the app when its cache is old (anonymous app user ID plus device metadata); purchase;
-      restore. Google Play automatic protection checks the install when the app opens. Play
-      Console shows the publisher order records (searchable by buyer email; sales reports with
+      to the app when its cache is old (anonymous app user ID plus device metadata); while the
+      price is unknown, the price alone is read again when the unlock sheet opens or the app
+      returns to the front (Slice 11b, first shipped in vc16); purchase; restore. Google Play
+      automatic protection checks the install when the app opens. Play Console shows the
+      publisher order records (searchable by buyer email; sales reports with
       buyer country/state/city/postcode and device model).
     - Expo: content-update check at every cold start: random per-install ID (EAS-Client-ID) plus
       the IP address. Failed-update IDs (up to 5) go with every later check while those updates
@@ -57,22 +59,15 @@
 <div class="meta">
   <strong>Firearm Competency Test SA</strong><br>
   Published by First Class Tests SA<br>
-  Effective date: 22 November 2026 (<a href="fctsa-privacy-policy-2026-07-06.html">previous version: 6 July 2026</a>)
+  Effective date: 23 November 2026 (<a href="fctsa-privacy-policy-2026-11-22.html">previous version: 22 November 2026</a>)
 </div>
 
-<p><strong>What changed on 22 November 2026:</strong> this version describes more fully what the app's automatic online checks send and who keeps what. It now explains:</p>
-<ul>
-  <li>that the app checks your unlock and its price with RevenueCat and Google Play each time it starts, even if you never buy, and that RevenueCat keeps an anonymous record for every installation;</li>
-  <li>Google Play's installation check, and the order records Google Play shows us;</li>
-  <li>the random installation identifier used by our update provider, Expo, the update statistics it keeps for us, and failure reports;</li>
-  <li>Android backups, and emails you send us.</li>
-</ul>
-<p>The app itself works exactly as before.</p>
+<p><strong>What changed on 23 November 2026:</strong> if the price has not loaded yet (for example, after the app started offline), the app now asks for it again when you open the unlock screen or come back to the app. Nothing else changed.</p>
 
 <div class="summary">
   <strong>In short:</strong> Firearm Competency Test SA works offline. It has no user accounts and no sign-in, shows no ads, and contains no advertising or tracking tools and nothing that records what you do inside the app. It goes online automatically, when it starts with an internet connection, for two things only:
   <ul>
-    <li>to check your unlock and its price with Google Play and RevenueCat (this check can run again when you come back to the app after a few minutes, and when you buy or restore the unlock); Google Play may also check that the app was installed from Google Play; and</li>
+    <li>to check your unlock and its price with Google Play and RevenueCat (this check can run again when you come back to the app after a few minutes, and when you buy or restore the unlock; if the price has not loaded yet, the app also asks for it again when you open the unlock screen or come back to the app); Google Play may also check that the app was installed from Google Play; and</li>
     <li>to check Expo for new question content.</li>
   </ul>
   Expo, our update provider, keeps a record of each update check and gives us counts of installations and failed updates; RevenueCat, our purchase provider, gives us statistics on purchases and on how many installations check in (see sections 3 and 5). These statistics are what Google Play's data safety section lists as "Analytics". None of this is used to identify you, build a profile of you or follow you across other apps or websites.
@@ -89,7 +84,7 @@
 
 <p><strong>(a) Your unlock — Google Play and RevenueCat.</strong></p>
 <ul>
-  <li><strong>RevenueCat</strong> manages your unlock (entitlement) for us. Each time the app starts, and again when you return to it after a few minutes, whether or not you ever buy, the app checks your unlock and the price with RevenueCat. RevenueCat receives an anonymous identifier that the app creates, together with technical details such as the app version, the RevenueCat software version, the operating-system version, the device model and your device's country (from the store), and it keeps a record for that identifier. The identifier contains no name or email address. If you buy or restore the unlock, the record also holds your purchase and entitlement records, including your Google Play order number. RevenueCat gives us statistics on purchases and on how many installations check in. We do not send your name, email or contacts to RevenueCat.</li>
+  <li><strong>RevenueCat</strong> manages your unlock (entitlement) for us. Each time the app starts, and again when you return to it after a few minutes, whether or not you ever buy, the app checks your unlock and the price with RevenueCat. If the price has not loaded yet (for example, after the app started offline), the app asks RevenueCat for it again when you open the unlock screen or come back to the app. RevenueCat receives an anonymous identifier that the app creates, together with technical details such as the app version, the RevenueCat software version, the operating-system version, the device model and your device's country (from the store), and it keeps a record for that identifier. The identifier contains no name or email address. If you buy or restore the unlock, the record also holds your purchase and entitlement records, including your Google Play order number. RevenueCat gives us statistics on purchases and on how many installations check in. We do not send your name, email or contacts to RevenueCat.</li>
   <li><strong>Google Play (Google)</strong> provides the price, processes your payment and links the purchase to your Google account. The app never sends us your card details or your Google identity. When the app opens, Google Play may also check that the app was installed from Google Play (Google Play's app-integrity protection); this check is part of Google Play and may contact Google.</li>
   <li><strong>What Google Play shows us.</strong> In Play Console (Google's website for app publishers), Google shows us a record of each purchase: the order number, date, product and price, your country and, for some sales, your state, city and postcode, and the device model. It also lets us find an order by the buyer's email address. We use this only for refunds, support, deletion requests and tax records.</li>
 </ul>
