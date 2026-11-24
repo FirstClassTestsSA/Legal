@@ -11,7 +11,7 @@
     5. DATES: effective date, the "What changed" note, and the archived previous version's link.
   Everything else (data paths, processors, POPIA framing) is engine-generic and stays as-is
   UNLESS a new app adds an SDK that transmits data — re-run the SDK audit before reusing.
-  Data paths as of 23 Nov 2026 (expo-updates 58, expo-eas-client 58, react-native-purchases 10.16):
+  Data paths as of 25 Nov 2026 (expo-updates 58, expo-eas-client 58, react-native-purchases 10.16):
     - RevenueCat + Google Play Billing: unlock and price check at every start and again on return
       to the app when its cache is old (anonymous app user ID plus device metadata); while the
       price is unknown, the price alone is read again when the unlock sheet opens or the app
@@ -19,6 +19,10 @@
       automatic protection checks the install when the app opens. Play Console shows the
       publisher order records (searchable by buyer email; sales reports with
       buyer country/state/city/postcode and device model).
+    - RevenueCat's Android SDK (with play-services-auth-blockstore, in every build since vc6) also
+      stores a BUYER's anonymous app user ID in Google Play services' Block Store, with cloud
+      backup on, and at Restore or after a purchase sends it to RevenueCat to alias it to the
+      current ID (described in section 3 since 25 Nov 2026).
     - Expo: content-update check at every cold start: random per-install ID (EAS-Client-ID) plus
       the IP address. Failed-update IDs (up to 5) go with every later check while those updates
       stay on the phone; an expo-updates start-up error text (max 1024 chars) goes once after an
@@ -59,10 +63,10 @@
 <div class="meta">
   <strong>Firearm Competency Test SA</strong><br>
   Published by First Class Tests SA<br>
-  Effective date: 23 November 2026 (<a href="fctsa-privacy-policy-2026-11-22.html">previous version: 22 November 2026</a>)
+  Effective date: 25 November 2026 (<a href="fctsa-privacy-policy-2026-11-23.html">previous version: 23 November 2026</a>)
 </div>
 
-<p><strong>What changed on 23 November 2026:</strong> if the price has not loaded yet (for example, after the app started offline), the app now asks for it again when you open the unlock screen or come back to the app. Nothing else changed.</p>
+<p><strong>What changed on 25 November 2026:</strong> section 3 now also says that, if you have bought the unlock, RevenueCat's software keeps a copy of your RevenueCat identifier with Google Play services on your phone, and that the app sends it to RevenueCat when you restore or buy the unlock. Nothing else changed.</p>
 
 <div class="summary">
   <strong>In short:</strong> Firearm Competency Test SA works offline. It has no user accounts and no sign-in, shows no ads, and contains no advertising or tracking tools and nothing that records what you do inside the app. It goes online automatically, when it starts with an internet connection, for two things only:
@@ -103,7 +107,7 @@
   <li>Separately, if the update system cannot read its own saved files when the app starts and has to fall back to the content built into the app, the next check (once only) includes a short technical description of that error, at most about 1,000 characters.</li>
 </ul>
 <p>Expo stores the installation identifier, your IP address and any failed-update identifiers with its records of these checks. It uses them on our behalf to decide which installations receive an update when we release it gradually, to count installations and failed updates for our update statistics, and to measure how much its update service is used. We use the failure statistics to spot and withdraw a faulty update. Expo states that it does not use this data for advertising, does not combine it with other apps' data, does not work out your location from it, and deletes the start-up error text after three days (see <a href="https://docs.expo.dev/eas-update/store-privacy-declarations/" target="_blank" rel="noopener">Expo's description of this data</a>).</p>
-<p>Clearing the app's storage (Settings &gt; Apps &gt; Firearm Competency Test SA &gt; Storage &gt; Clear storage) makes the app create new identifiers for Expo and RevenueCat the next time it starts. It does not delete the records Expo or RevenueCat already hold; it only means future checks use new identifiers. Clearing storage also erases your study progress, bookmarks and any free questions or mock-exam credit earned by sharing; a purchased unlock comes back automatically the next time the app is online, or through the app's "Restore previous purchase" option. Uninstalling and reinstalling may not give new identifiers: if Android backup is switched on for your Google account, Android restores the app's saved data, including the old identifiers, when the app is reinstalled.</p>
+<p>Clearing the app's storage (Settings &gt; Apps &gt; Firearm Competency Test SA &gt; Storage &gt; Clear storage) makes the app create new identifiers for Expo and RevenueCat the next time it starts. It does not delete the records Expo or RevenueCat already hold; it only means future checks use new identifiers. Clearing storage also erases your study progress, bookmarks and any free questions or mock-exam credit earned by sharing; a purchased unlock comes back automatically the next time the app is online, or through the app's "Restore previous purchase" option. Uninstalling and reinstalling may not give new identifiers: if Android backup is switched on for your Google account, Android restores the app's saved data, including the old identifiers, when the app is reinstalled. If you have bought the unlock, RevenueCat's software also keeps a copy of your RevenueCat identifier with Google Play services on your phone; if Android backup is switched on, Google keeps that copy when the app is uninstalled and restores it to a new phone set up from your backup. When you restore or buy the unlock, the app sends that earlier identifier to RevenueCat, which links the old and new records.</p>
 
 <h2>4. Information kept on your device</h2>
 <p>Your study progress, quiz results and bookmarks are kept on your device and are never sent to us. If Android backup is switched on for your Google account, Android also includes them in your device backup in your Google account (held by Google, not by us) and restores them if you reinstall the app or set up a new phone. Your unlock is recorded by RevenueCat (section 3(a)), and the app keeps a copy on your device so that it works offline.</p>
